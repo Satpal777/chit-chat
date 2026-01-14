@@ -1,0 +1,14 @@
+<nav class="flex items-center gap-2 text-sm sm:text-base">
+    @if (label()) {
+    <!-- Back to Menu Link -->
+    <a routerLink="/join" class="font-bold hover:underline cursor-pointer">
+        Join a Room
+    </a>
+    <span class="font-bold">/</span>
+    <!-- Current Page (non-clickable) -->
+    <span class="text-gray-600">{{ label() }}</span>
+    } @else {
+    <!-- Default: Just show "Join a Room" when on the menu -->
+    <span class="font-bold text-base sm:text-lg">Join a Room</span>
+    }
+</nav>
