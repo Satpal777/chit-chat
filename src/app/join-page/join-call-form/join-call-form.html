@@ -1,0 +1,55 @@
+<div
+    class="bg-white border-4 border-black p-3 sm:p-6 rounded-2xl sm:rounded-3xl shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col gap-3 sm:gap-4 w-full sm:max-w-2xl mx-auto">
+    <h2 class="text-lg sm:text-2xl font-bold uppercase border-b-4 border-black pb-2 mb-1 sm:mb-2">Join a Call</h2>
+    <p class="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">Got a code? Paste it here to join.</p>
+
+    <!-- Step 1: Paste Offer -->
+    <div class="flex flex-col gap-2">
+        <span class="font-bold badge bg-black text-white px-2 py-1 rounded inline-block w-max">Step 1</span>
+        <label class="font-bold text-sm uppercase">Paste Call Code from Friend</label>
+        <textarea #offerInput placeholder="Paste call code here..."
+            class="w-full h-32 p-3 bg-white border-2 border-black rounded-xl font-mono text-xs resize-none focus:outline-none focus:ring-4 focus:ring-green-200"></textarea>
+    </div>
+
+    <!-- Step 2: Create Answer (Implied) -->
+    <div class="flex flex-col gap-2">
+        <span class="font-bold badge bg-black text-white px-2 py-1 rounded inline-block w-max">Step 2</span>
+        <button (click)="pasteOffer(offerInput.value)"
+            class="px-6 py-3 bg-pink-400 font-bold border-2 border-black rounded-xl hover:bg-pink-500 transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] text-left flex justify-between items-center group">
+            Generate Response Code
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+    </div>
+
+    <!-- Step 3: Display Answer -->
+    <div class="flex flex-col gap-2">
+        <label class="font-bold text-sm uppercase">Your Response Code (Copy & Send back)</label>
+        <div class="relative">
+            <textarea readonly placeholder="Response code will appear here..." [value]="answer() || ''"
+                class="w-full h-32 p-3 bg-gray-100 border-2 border-black rounded-xl font-mono text-xs resize-none focus:outline-none focus:ring-2 focus:ring-black"></textarea>
+            @if (answer()) {
+            <button (click)="copyToClipboard(answer()!)"
+                class="absolute top-2 right-2 px-3 py-1 bg-pink-400 font-bold text-xs border-2 border-black rounded-lg hover:bg-pink-500 transition-all shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-px active:translate-y-px active:shadow-[1px_1px_0px_rgba(0,0,0,1)]">
+                @if (copied()) {
+                ✓ Copied
+                } @else {
+                📋 Copy
+                }
+            </button>
+            }
+        </div>
+    </div>
+
+    <!-- Step 3: Go to Call (only show when answer is ready) -->
+    @if (answer()) {
+    <div class="flex flex-col gap-2 mt-4">
+        <span class="font-bold badge bg-black text-white px-2 py-1 rounded inline-block w-max">Step 3</span>
+        <button (click)="goToCall()"
+            class="px-6 py-3 bg-green-400 font-bold border-2 border-black rounded-xl hover:bg-green-500 transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] text-left flex justify-between items-center group">
+            Go to Call
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+    </div>
+    }
+
+</div>

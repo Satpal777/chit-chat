@@ -1,0 +1,18 @@
+<div class="fixed top-4 right-4 z-50 flex flex-col gap-2">
+    @for (toast of toasts(); track toast.id) {
+    <div class="px-4 py-3 rounded-xl border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] font-bold animate-slide-in-right"
+        [class.bg-green-400]="toast.type === 'success'" [class.bg-red-400]="toast.type === 'error'"
+        [class.bg-blue-400]="toast.type === 'info'">
+        <div class="flex items-center gap-2">
+            @if (toast.type === 'success') {
+            <span class="text-xl">✓</span>
+            } @else if (toast.type === 'error') {
+            <span class="text-xl">✗</span>
+            } @else {
+            <span class="text-xl">ℹ</span>
+            }
+            <span>{{ toast.message }}</span>
+        </div>
+    </div>
+    }
+</div>
