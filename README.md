@@ -33,7 +33,7 @@ A modern, peer-to-peer video calling application built with Angular 21 and WebRT
 git clone https://github.com/Satpal777/chit-chat.git
 
 # Navigate to the project directory
-cd /chit-chat
+cd chit-chat
 
 # Install dependencies
 npm install
